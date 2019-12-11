@@ -13,8 +13,8 @@ import lombok.Setter;
 public class PedidoForm {
     private Integer idPedido;
     private String nombre;
-    private Double monto;
-    private Double descuento;
+    private Integer monto;
+    private Integer descuento;
 
     public Pedido asPedido() {
         return Pedido.builder()

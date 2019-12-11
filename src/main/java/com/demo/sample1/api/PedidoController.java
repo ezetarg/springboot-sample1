@@ -3,7 +3,6 @@ package com.demo.sample1.api;
 import com.demo.sample1.api.presentation.PedidoForm;
 import com.demo.sample1.domain.Pedido;
 import com.demo.sample1.service.PedidoService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +19,7 @@ public class PedidoController {
     @PostMapping("/guardar")
     public ResponseEntity<Pedido> save(@RequestBody PedidoForm pedidoForm) {
         pedidoService.insertOrUpdate(pedidoForm.asPedido());
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/{idPedido}")
@@ -28,9 +27,9 @@ public class PedidoController {
         Pedido pedido = pedidoService.select(idPedido);
 
         if (pedido != null) {
-            return new ResponseEntity<>(pedido, HttpStatus.OK);
+            return ResponseEntity.ok(pedido);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return ResponseEntity.notFound().build();
         }
     }
 
